@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[square,sort,comma,numbers]{natbib}
+
+\title{Introduction of Software Configuration Management}
+\author{Carl-Johan Heinze, Jonathan Klingberg, Jerry Lindström \\Group II-f}
+\date{\today}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+
+\begin{document}
+
+\maketitle
+
+\section{Synopsis}
+
+\subsection{Keywords}
+Software Configuration Management (SCM), parallel development, version control, team coordination, SCM tools, agile development, configuration items, SCM implementation plan, CM variants, branching patterns.
+\mbox{} \\
+
+\subsection{Topic}
+This project is about helping a small but growing company with a low budget and without previous SCM experience to adopt SCM. The company today suffers from the common problems that a proper SCM implementation would solve. What is relevant is how to convince the company that SCM is needed and that it would save them time, effort and money. 
+
+\noindent Further we will put together a tailored implementation plan for the company to increase their productivity and during this process we will address some of the common pitfalls and provide a sustainable solution where both current and future circumstances are taken into account.
+\mbox{} \\
+
+\subsection{Problem statement}
+Our project is going to uncover the benefits of SCM for a company that has already survived some time without any form of SCM. The purpose of the project is to introduce SCM to a company in a way that increases its productivity.\mbox{} \\
+
+\hfill \break
+\noindent Some of the problems of this project are  listed as follows:
+\begin{itemize}
+\item How are we going to convince the stakeholders to adopt SCM if they have survived without it so far?
+\item How will it be possible to introduce SCM if the company is already on a tight budget?
+\item What are the difficuties in order to implement SCM to a company completely new to SCM?
+\item Are additional people needed in the company to handle SCM and what properties are we looking for when choosing someone to be responsible for SCM?
+\item Which SCM tool will be the most suitable for our specific case and within a reasonable budget?
+\item How shall already existing backups, versions and releases be structured in order to be integrated to our solution?
+\item What shall be configuration items and what shall be artifacts?
+\item How is SCM going to lead to future financial gains?
+\item How can we help the company to maintain a sustainable SCM after the basic implementation is finished?
+\end{itemize}
+
+\subsection{PonteVecchio Software Biography}
+The company which is target for this project is called PonteVecchio Software. PonteVecchio has grown from 2 to 15 developers over the last 10 years, and has never used any type of versioning or configuration management. Their software has been backed up to CDs each time it has been sent to a customer, but they do not support the older versions, or any other version for that matter. 
+\mbox{} \\
+
+\noindent PonteVecchio Software started out as a small software firm with two Computer Science students as their founders, John and Adam. Their first projects was a small back end service for a web server which they sold directly to other developers. The service was a moderate success and motivated John and Adam to hire some more people and take on new challenges. Now 10 years later, PonteVecchio has 4 products which their 15 developers ship to customers:
+\begin{itemize}
+\item A task manager app for keeping schedules and todo list. This app is developed in two versions, both as a regular desktop application and a mobile application. Both share a high degree of code base. 
+\item An online password manager where users can store all their login information online. This system requires a high level of security verification.
+\item An enterprise version of their scheduling app that was specifically ordered by a company. This version is highly customized and does not share a lot of code base with the standard application. It does however use some Open Source developed modules that the company requires for integration with their systems. 
+\end{itemize}
+\mbox{} \\
+
+\noindent Since the enterprise customers are very demanding and comes up with new modifications and requirements, the developers have chosen to work agile and uses monthly scrum sessions. In the end of each scrum they will do a new release which is evaluated by the customers and developed further in the next sprint.
+\mbox{} \\
+
+\noindent Up until now all projects and its modules has been shared either via a local server in the office or via email, with each developer being responsible for their own share. This has severely hurt their productivity since the possibility of concurrent development is very limited. 
+
+\mbox{} \\
+Today John is the one that knows the organization best and has tried to keep up with what is happening in every project and what the others are currently working on. John is also the one with most panic to get the SCM in place before something catastrophic could happen. Therefore John is eager on taking the role of a CM manager. John is the one who suggested taking on SCM, even though he himself has very limited knowledge of SCM and how it works.
+
+\mbox{} \\
+Adam often do experiments on new features and wants to try them out before implementing them to the main repository, he therefore would like to have his own environment to do his experiments on. PonteVecchio has a steady revenue from these product but their margins are slim and they need to keep costs down, therefore John also desires a system that is highly cost-effective to implement, both in terms of price and time effort. 
+
+\mbox{} \\
+The Quality Assurance or QA are currently low on resources and more or less all of the developers acts as QA. Hence it’s not uncommon that errors are delivered to the customer and since some parts of the system are security critical the traceability of changes made between releases are as important as the possibility to rollback and reproduce a stable version in this scenario.
+
+\mbox{} \\
+The company's future looks bright and is about to hire new personnel in a near future but wants their SCM implementation to be in place before new people gets involved. Therefore the SCM setup we will implement must be future compatible with more people along with separated departments and teams for the different projects. Further the responsibility for the different modules must be easy to split between the developers.
+
+\mbox{} \\
+\subsection{Preliminary results}
+First of all we’ll need to convince the importance of SCM to the management of PonteVecchio, this can be done for example by highlighting some of their current problems that a proper SCM implementation would solve.
+
+\mbox{} \\
+Since PonteVecchio are completely unfamiliar to SCM we’ll need to setup a complete SCM implementation plan tailored for their needs. We’ll also evaluate some tools to find out the most suitable for their demands. 
+Since they have multiple products and variants we’ll also investigate in a proper branching pattern suitable for their business.
+
+\mbox{} \\
+The implementation plan will also include steps such as setting up a SCM policy and some guidelines for how SCM should be applied, this to make sure the SCM structure are being followed even after the implementation is finished.
+
+\mbox{} \\
+The planned preliminary end result is a more organized, effective and well structured organization. The cost of having SCM shall be justified by having less problems. Overall it shall be beneficial to have SCM in the company, compared to not having it.
+
+\mbox{} \\
+\begin{thebibliography}{1}
+\bibitem{Babich} Wayne A. Babich, Software Configuration Management, COORDINATION FOR TEAM PRODUCTIVITY.
+
+\bibitem{Kelly} Kelly, Chapter 5: The CM TEAM AND LIBRARY, subchapter: RECRUITMENT PROBLEMS 
+
+\bibitem{Moreira} Mario Moreira, ‘The 3 Software Configuration Management Implementation Levels’
+
+\bibitem{Compton}Compton, The Software Configuration Manager, subchapter: QUALIFICATIONS
+
+\bibitem{Koskela}Juha Koskela, Software configuration management in agile methods
+\url{http://www.vtt.fi/inf/pdf/publications/2003/P514.pdf}
+
+\bibitem{Keys} Jessica Keyes, Software Configuration Management (2004) \url{http://books.google.se/books?id=0vjMlBz4nC0C&printsec=frontcover&hl=sv&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false}
+\end{thebibliography}
+\end{document}
