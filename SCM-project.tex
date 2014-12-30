@@ -161,14 +161,35 @@ The company which is target for this project is called PonteVecchio Software. Po
 Scientific research 
 
 \section{Discussion}
-
+\subsection{Common success criterias}
+Moreira mentions in \cite{Moreira} that in order to increase the chances of successfully implement SCM there's 4 common success criterias for a SCM implementation effort that needs to be fulfilled on a reasonable level before the implementation can be carried out:
+\begin{itemize}
+\item Funding - money to purchase appropriate SCM tools ans infrastructure
+\item Skilled SCM personnel - persons trained and experienced in the areas of SCM tools and process
+\item Sponsorship - Management commitment to the effort
+\item SCM implementation plan - a plan detailing the tasks that lead to the implementation of SCM practices and effective tracking and management of the plan
+\end{itemize}
+Of which we will focus on the two last ones
 \subsection{Convince management /CJ}
+\subsection{Difficulties implementing SCM in companies that are new to SCM /JL}
+This subsection will not go too deep on the above-mentioned difficulties, as these are mentioned in each relevant subsection that belongs to each particular SCM task.
 
+We think the main difficulties are the following:
+\begin{itemize}
+\item How are we going to get the developers involved in defining SCM plans and activities for their current project? We think it is a common scenario that developers that have not used SCM in the past, may be disinterested and think it is a waste of time. To solve this, we think that a workshop \cite{Vinter} would be a good solution, as it would force the developers to sit down and think about how SCM can benefit their current project.
+
+\item Another difficulty that we think is common, is how to go through all existing artifacts and choose which ones shall be configuration items (CI:s) \cite{Kelly2}? It is obvious that we need to identify what items require individual configuration, which is not an easy task, especially for a company without prior SCM knowledge. Our conclusion is that it would be wise to seek external consulting (if there isn't anyone in the company who has worked as an SCM manager before) of what shall be CIs and what shall remain as artifacts. We think that this is the best solution, as it's easy to pick wrong artifacts as CIs if one lack experience.
+
+\item A third difficulty that we think is relevant, is how to ensure reproducibility of everything prior to SCM? Our conclusion is that we think that this is not possible, unless they already had reproducibility prior to SCM. Our reasoning is that what can't be reproduced, is already lost and can't be made reproducible. 
+
+\end{itemize}
 \subsection{Branching pattern/JL}
-\subsubsection{Optimal branching for Parallel Development}
+This subsection covers some important branching related topics. Some topics are more detailed than others, depending on how important we think they are.
+
+\subsubsection{Optimal branching for Parallel Development/JL}
 The main question here is how branching should be performed in order to obtain maximum efficiency during parallel work. 
 
-\noindent Our definition of not having any branches would be that no branches are allowed, not even local ones in the workspace. This would mean that everyone would be working on the original files in the repository. We have discussed that parallel work would be very difficult in such a scenario, as everyone would be intruding into each other space, braking each others code.
+\noindent Our definition of not having any branches would be that no branches are allowed, not even local ones in the workspace. This would mean that everyone would be working on the original files in the repository. We have discussed that parallel work would be very difficult in such a scenario, as everyone would be intruding into each others space, braking each others code.
 
 \noindent We have discussed that not having any branches would also mean bad security and reproducibility. With bad security, we mean that we can not go back to a previous version of our released software. This can be problematic because if our new revision have more bugs than our old, we can't do a diff between the new and the old version to find the bug, because we did not branch the old version. Reproducibility would be nonexistent without any branches, as the only version we have is the one we are working on.
 
@@ -207,15 +228,59 @@ We recommend PonteVeccio to establish baselines whenever there are enough change
 \subsubsection{How to accomplish reproducibility?/JL}
 \noindent Since the application that PonteVeccio is developing is an Enterprise scheduling app, with on-line functionality, it is a distributed system. In distributed systems, it is unfortunately not easy to ensure reproducibility \cite{Bays}, as some dependencies throughout the network may change. We can however put the reproducibility odds to our advantage by by saving all the released file versions, the baselines and the documents associated with each release. 
 
-\subsection{SCM tools/JK}
-checklist by schamp
-rather small impact since no tools been used
-suport for identification and traceability
+\subsection{SCM tool selection/JK}
+Selecting the right SCM tool is a rather complicated process that should not be underestimated, the tool will be used for a very long period of time and a well evaluated tool selection process will increase the chances of finding a tool suited for the company's needs. There already exists general checklists of how the selection process could look like and the following subsections will give a brief summary of the most fundamental tasks during this process.
 
+\subsection{Organizational support and Management commitment}
+One of Moreiras \cite{Moreira} common success criterias is the sponsorship or management support.
+If we can convince management of the increased productivity of the tool then we'll also have their commitment to the implementation process which is necessary in order to adapt SCM throughout the organization. This can be achieved by highlighting the economical benefits in the long run rather than the technical ones, if we success in estimating a higher return of investment to present to the management then there's a higher chance that the management will see the benefits of a proper SCM implementation. The organizational commitment can then for example be displayed by some high-level technicals that shows their interest in the new tool simply by demostrating ther commitment to adopt the tool.  Determine a sponsor.
+
+\subsection{Determine the effort}
+To be able to calculate the return of investment we'll have to calculate an effort estimation for the implementation effort. The impact of the effort will depend on the scope that the new tool will affect, this scope is likely bigger than one first think of. For example selecting a tool primarily for version control of source code files may eventually lead to discussions about how software configuration management fits into the organization's software development process. Another thing that will affect the effort estimation is the number of staff to train in the new tool and also weather there already exists a tool that needs to be replaced with the new one. In PonteVecchios case this implementation effort is relatively small since they  have any tools that needs to be changed nor does they have lot of staff that needs training in the new tool.
+One should however not underestimate the number of requirements that should help the comanys SCM structure and be supported by the tool.
+
+\subsubsection{Desirable properties/JK}
+The Evaluation of Configuration Management Version Control Tools by ABB describes some guidelines to follow while evaluating SCM tools.
+There are many different properties that have do be taken into account and by using the following guidelines during the process of deciding which properties are the most important ones will be helpful. For instance they mention some of the different properties that needs to be taken into account when selecting the tool, some of which are listed below:
+\begin{itemize}
+\item SCM strategies (long transaction, composition model, change set model)
+\item SCM process support
+\item Freeze code (baseline handling, releases, file locks)
+\item Branching strategies \& Merging (tracking between merges)
+\item History and diff functions
+\item Distributed development
+\item Support for remote sites
+\item Integration to other tools such as IDEs
+\item Scriptable to enable automation of tasks
+\item Status accounting Developer Requirements
+\item Ease of use
+\item Fast setup of Workspace
+\item Daily update to repository
+\item Working offline or when network not available
+\item Performance
+\item Installation and easy deployment
+\item Tool support
+\item Platforms required
+\item Support for remote sites or distributed development
+\item Support for distributed revision control or DVCS
+\item Client/server architecture
+\item Security (Backup)
+\end{itemize}
+Before selecting a SCM tool we need to look at the company needs and especially focusing on what features are most important in terms of increased productivity which in the long run will lead to financial gains. 
+support for identification and traceability
+One cannot simply select a SCM tool without carefully investigate the company needs.
+SCM tool selecting group
+Organization are growing, need for SCM process lead to need of proper SCM tool,  accroding to: http://www.cmcrossroads.com/article/practical-approach-selecting-and-adopting-scm-tool
+Tool selecting commitment according to paper. 
+\begin{itemize}
+\item The wanted benefit with a tool or a new tool..
+\item The process used or the process needed for successful siftware development.
+\item See the uture of needs in local SCM infrastructure and processes.
+\item Have the liquidity to buy and deploy the new tool or tools.
+\end{itemize}
+SCM tool selecting group/committee
+Not to take evaluation light, the tool will be used for a very long period of time.
 \subsubsection{Alternatives/JK}
-\subsubsection{Pros/JK}
-\subsubsection{Cons/JK}
-\subsubsection{Conclusion/JK}
 
 \section{Conclusion}
 
@@ -239,6 +304,8 @@ Since they have multiple products and variants we’ll also investigate in a pro
 
 \bibitem{Kelly} Kelly, Chapter 5: The CM TEAM AND LIBRARY, subchapter: RECRUITMENT PROBLEMS 
 
+\bibitem{Kelly2} Kelly, Chapter 7: WHAT DOES AND DOES NOT NEED CONTROLLING? 
+
 \bibitem{Moreira} Mario Moreira, ‘The 3 Software Configuration Management Implementation Levels’
 
 \bibitem{Compton}Compton, The Software Configuration Manager, subchapter: QUALIFICATIONS
@@ -254,6 +321,9 @@ Since they have multiple products and variants we’ll also investigate in a pro
 
 \bibitem{Borraci} Lorenzo Borraci, A Return on Investment Model for Software Configuration Management (2005)
 
+\bibitem{Vinter} Bendix \& Vinter: Configuration Management from a developer's Perspective (2001)
+
 \bibitem{Bays} Bays, chapter 4: Builds
+
 \end{thebibliography}
 \end{document}
