@@ -169,7 +169,7 @@ Moreira mentions in \cite{Moreira} that in order to increase the chances of succ
 \item Sponsorship - Management commitment to the effort
 \item SCM implementation plan - a plan detailing the tasks that lead to the implementation of SCM practices and effective tracking and management of the plan
 \end{itemize}
-Of which we will focus on the two last ones
+Of which we will blablabla
 \subsection{Convince management /CJ}
 The level of configuration management at PonteVecchio has up until now been at a very primitive level, and is in effect hindering the company from developing, maintaining and expanding. In order to convince the management that structuring an SCM plan and employing SCM tools is the right way to go instead of using their ad hoc solution, we would like to introduce the Capability Maturity Model (CMM). 
 
@@ -234,15 +234,16 @@ We recommend PonteVeccio to establish baselines whenever there are enough change
 
 \subsection{SCM tool selection/JK}
 Selecting the right SCM tool is a rather complicated process that should not be underestimated, the tool will be used for a very long period of time and a well evaluated tool selection process will increase the chances of finding a tool suited for the company's needs. There already exists general checklists of how the selection process could look like and the following subsections will give a brief summary of the most fundamental tasks during this process.
+Schamp: You cannot be concrete until you have evaluated the environment and the process.
 
 \subsubsection{Obtain organizational support and management commitment}
 One of Moreiras \cite{Moreira} common success criterias is the sponsorship or management support. If we can convince management of the increased productivity thanks to the tool, then we'll also have their commitment to the implementation process which is necessary in order to adapt SCM throughout the organization \cite{Sayko}. The management attention can be obtained by highlighting the economical benefits in the long run rather than the technical ones. If we success in estimating a high return of investment to present to the management then there's a higher chance that the management will see the benefits of a proper SCM implementation and give their commitment to the tool adaption \cite{Sayko}. 
 
 \subsubsection{Determine the scope of the effort}
-To be able to calculate the return of investment we'll have to calculate an effort estimation for the implementation process. As Sayko explains it: "The cost is not merely the purchase price of the SCM tool, but the learning curve and productivity impact that occurs during the tool adoption process" \cite{Sayko}. Another thing that will affect the effort estimation is whether there already exists a tool that needs to be replaced with the new one. In PonteVecchios case this implementation effort is relatively small since they doesn't have any tools that needs to be replaced nor does they have lot of staff that needs training in the new tool. The impact of the effort will depend on the scope that the new tool will affect, this scope is likely bigger than one first think of. As sayko explains it: "For example selecting a tool primarily for version control of source code files may eventually lead to discussions about how software configuration management fits into the organization's software development process" \cite{Sayko}. Further the effort estimation is highly connected to the organizational needs discussed in the following subsection.
+To be able to calculate the return of investment we'll have to calculate an effort estimation for the implementation process. The impact of the effort will depend on the scope that the new tool will affect, this scope is likely bigger than one first think of. As sayko explains it: "For example selecting a tool primarily for version control of source code files may eventually lead to discussions about how software configuration management fits into the organization's software development process" \cite{Sayko}. Sayko also explains that: "The cost is not merely the purchase price of the SCM tool, but the learning curve and productivity impact that occurs during the tool adoption process" \cite{Sayko}, which might not be true for small companies\todo{Move to conclusion}. Another thing that will affect the effort estimation is whether there already exists a tool that needs to be replaced with the new one. In PonteVecchios case this implementation effort is relatively small since they doesn't have any tools that needs to be replaced nor does they have lot of staff that needs training in the new tool. Further the effort estimation is highly connected to the organizational needs discussed in the following subsection.
 
 \subsubsection{Determine organizational needs}
-Investigate in organizations needs for example by interviewing a representative cross section of the organization's staff such as developers, QA personnel and 
+In order to determine an appropriate level of requirements that the organization SCM process will put on the tool  Investigate in organizations needs for example by interviewing a representative cross section of the organization's staff such as developers, QA personnel and 
 Try to find a tool with an approriate level of SCM process support.
 Make sure that the SCM process is supported by the tool
 PonteVecchio probably desires a tool that helps them with the complete SCM process rather than just the version control features and further also facing a more elaborated tool evaluation and adoption process \cite{Sayko}. If you only focus on tools supported for your SCM process, for example agile development, then there's directly a much smaller spectra of tools to choose from which will ease the selection process \cite{Sayko}.
@@ -251,6 +252,7 @@ PonteVecchio probably desires a tool that helps them with the complete SCM proce
 The Evaluation of Configuration Management Version Control Tools by ABB describes some guidelines to follow while evaluating SCM tools.
 One should however not underestimate the number of requirements that will be required by the company's new SCM process and that needs to be supported by the tool.
 There are many different properties that have do be taken into account and by using the following guidelines during the process of deciding which properties are the most important ones will be helpful. For instance they mention some of the different properties that needs to be taken into account when selecting the tool, some of which are listed below:
+List by Schamp to grade different properties between tools depending on their importance for our organization.
 \begin{itemize}
 \item SCM strategies (long transaction, composition model, change set model)
 \item SCM process support
@@ -290,11 +292,18 @@ Tool selecting commitment according to paper.
 \end{itemize}
 SCM tool selecting group/committee
 Not to take evaluation light, the tool will be used for a very long period of time.
+
 \subsubsection{Identify Candidate SCM Tools}
-Supported by the development platform and IDE
+Make a list of tools supported by the development platform and IDE. Rank them in process support order
+
+\subsubsection{Select and SCM tool}
+Consider the properties support and process support and pick the one that feels best.
 
 \subsubsection{Adapt the tool}
-To avoid organization-wide chaos, begin the adoption on a small pilot project, not
+To avoid organization-wide chaos, begin the adoption on a small pilot project. Rather time consuming process.
+Train staff, proper education sessions.
+The migration process is easy since they doesn't have any.
+
 
 \section{Conclusion}
 
