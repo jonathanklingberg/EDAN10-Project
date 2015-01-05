@@ -71,7 +71,7 @@
 % Bold the 'Figure #' in the caption and separate it with a period
 % Captions will be left justified
 \usepackage[labelfont=bf,labelsep=period,justification=raggedright]{caption}
-\captionsetup[table]{name=Tabell}
+\captionsetup[table]{name=Table}
 % Use the PLoS provided bibtex style
 \bibliographystyle{plos2009}
 
@@ -104,10 +104,8 @@
 
 %%%%% Requirement engineering work %%%%%%%%% 
 \begin{abstract}
-\remove{ca 5 rader SCM benefits \& PonteVecchio.}
-
-\noindent Choosing an optimal branching strategy is a complicated task. If sacrificing safety for speed (Deferred Branching) or sacrificing speed for safety (Early Branching) is more favorable for PonteVeccio is one of the debates brought up in this paper. This paper will highlight areas like optimal branching strategies for parallel development, isolation and reproducibility in industrial situations such as the one in PonteVeccio. Areas like merging style, variants and baselines are also mentioned in this paper.
-\todo{Radbrytning funkar inte här?! JL}
+\noindent PonteVecchio Software is a fictional company created for this project. PonteVecchio is trying to stay competitive in a market that is demanding faster releases, more functionality and high quality. However, they made the mistake of not investing or structuring a solid SCM plan. Our goals with this project is to help them adopt such a plan, along as showing them all the benefits they would enjoy, as well as convincing them that it is a worthwhile investment.
+\noindent In the plan we will help them choose an optimal branching strategy, which is a complicated task. If sacrificing safety for speed (Deferred Branching) or sacrificing speed for safety (Early Branching) is more favorable for PonteVeccio is one of the debates brought up in this paper. This paper will highlight areas like optimal branching strategies for parallel development, isolation and reproducibility in industrial situations such as the one in PonteVeccio. Areas like merging style, variants and baselines are also mentioned in this paper.
 \noindent One of the most fundamental tasks when introducing SCM to a company completely new to SCM is the establishment of a SCM tool. The tool will most likely become the base of the complete SCM process and which tool to use is a rather complicated question that needs to be answered with care. Some of the most vital tasks during the tool evaluation process are therefore described in a rather practical way along with some general advices.
 
 
@@ -120,21 +118,21 @@ The goal of this report is to help a small but growing company with a low budget
 \noindent Further we will focus on some of the implementation tasks found in Moreiras \cite{Moreira} paper about SCM implementation such as how to raise management commitment of SCM, setup viable branching patterns and how to select a SCM tool suitable for the company in order to increase their productivity. During this process we will address some of the common pitfalls and provide a sustainable solution where both current and future circumstances are taken into account.
 
 \section{PonteVecchio Software Biography}
-The company which is target for this project is called PonteVecchio Software. PonteVecchio has grown from 2 to 15 developers over the last 10 years, and has never used any type of versioning or configuration management. Their software has been backed up to CDs each time it has been sent to a customer, but they do not support the older versions, or any other version for that matter.
+The company which is targeted for this project is called PonteVecchio Software. PonteVecchio has grown from 2 to 15 developers over the last 10 years, and has never used any type of versioning or configuration management. Their software has been backed up to CDs each time it has been sent to a customer, but they do not support the older versions, or any other version for that matter.
 
 \noindent PonteVecchio Software started out as a small software firm with two Computer Science students as their founders, John and Adam. Their first projects was a small back end service for a web server which they sold directly to other developers. The service was a moderate success and motivated John and Adam to hire some more people and take on new challenges. Now 10 years later, PonteVecchio has 4 products which their 15 developers ship to customers:
 \begin{itemize}
-\item A task manager app for keeping schedules and todo list. This app is developed in two versions, both as a regular desktop application and a mobile application. Both share a high degree of code base. 
+\item A task manager app for keeping schedules and to-do list. This app is developed in two versions, both as a regular desktop application and a mobile application. Both share a high degree of code base. 
 \item An online password manager where users can store all their login information online. This system requires a high level of security verification.
 \end{itemize}
 
-\noindent Since the enterprise customers are very demanding and comes up with new modifications and requirements, the developers have chosen to work agile and uses monthly scrum sessions. In the end of each scrum they will do a new release which is evaluated by the customers and developed further in the next sprint.
+\noindent Since the enterprise customers are very demanding and comes up with new modifications and requirements, the developers have chosen to work agile and uses monthly scrum sessions. At the end of each scrum they will do a new release which is evaluated by the customers and developed further in the next sprint.
 
 \noindent Up until now all projects and its modules has been shared either via a local server in the office or via email, with each developer being responsible for their own share. This has severely hurt their productivity since the possibility of concurrent development is very limited. 
 
 \noindent Today John is the one that knows the organization best and has tried to keep up with what is happening in every project and what the others are currently working on. John is also the one with most panic to get the SCM in place before something catastrophic could happen. Therefore John is eager on taking the role of a CM manager. John is the one who suggested taking on SCM, even though he himself has very limited knowledge of SCM and how it works.
 
-\noindent Adam often do experiments on new features and wants to try them out before implementing them to the main repository, he therefore would like to have his own environment to do his experiments on. PonteVecchio has a steady revenue from these product but their margins are slim and they need to keep costs down, therefore John also desires a system that is highly cost-effective to implement, both in terms of price and time effort. 
+\noindent Adam often does experiments on new features and wants to try them out before implementing them to the main repository, he therefore would like to have his own environment to do his experiments on. PonteVecchio has a steady revenue from these product but their margins are slim and they need to keep costs down, therefore John also desires a system that is highly cost-effective to implement, both in terms of price and time effort. 
 
 \noindent The Quality Assurance or QA are currently low on resources and more or less all of the developers acts as QA. Hence it’s not uncommon that errors are delivered to the customer and since some parts of the system are security critical the traceability of changes made between releases are as important as the possibility to rollback and reproduce a stable version in this scenario.
 
@@ -143,42 +141,39 @@ The company which is target for this project is called PonteVecchio Software. Po
 \section{Problem statement}
 
 \hfill \break
-\noindent Some of the problems of this report are  listed as follows:
+\noindent Some of the problems of this report are listed as follows:
 \begin{itemize}
 \item How are we going to convince the stakeholders to adopt SCM if they have survived almost completely without it so far? In other words what are the greatest benefits of SCM?
 \item How will it be possible to introduce SCM if the company is already on a tight budget?
 \item What are the difficulties in order to implement SCM to a company new to SCM?
 \item Which branching pattern and merging strategy will be the most suitable for PonteVecchio considered the high demand for traceability along with the complexity of parallel development and variants?
 \item What needs to be taken into account when selecting a SCM tool suitable for PonteVecchio considered the high demand for traceability and security verification within a reasonable budget?
-\item \remove{How can we help the company to maintain a sustainable SCM after the basic implementation is finished?}\todo{Vi nämner inte detta i rapporten? Lars tyckte denna punkt var intressant, lite synd att vi inte nämner något...} \todo{Ta bort. Vi får inte plats med det. JL}
-\todo{Kan vi härleda alla problem vi diskuterar i rapporten till dessa nu? eller saknas något?}
 \end{itemize}
 
 \section{Method}
-First of all we’ll need to convince the importance of SCM to the management of PonteVecchio, this can be done for example by highlighting some of their current problems that a proper SCM implementation would solve, we can also refer so statistics from similar companies with successfully implemented SCM.
+First of all we’ll need to convince the importance of SCM to the management of PonteVecchio, this can be done for example by highlighting some of their current problems that a proper SCM implementation would solve, we can also refer to statistics from similar companies with successfully implemented SCM.
 
 \noindent Since PonteVecchio are completely unfamiliar to SCM we’ll need to setup a SCM process including branching pattern and merging strategies tailored for their needs. We’ll also describe the most fundamental tasks of the SCM tool evaluation process which will help them to find a tool suitable for their needs.
 
 \section{Scope}
-Moreira mentions in \cite{Moreira} that in order to increase the chances of successfully implement SCM there's 4 common success criterias for a SCM implementation effort that needs to be fulfilled on a reasonable level before the implementation can be carried out:
+Moreira\cite{Moreira} mentions that in order to increase the chances of successfully implementing SCM, four common success criteria needs to be fulfilled on a reasonable level before the implementation can
+be carried out:
 \begin{itemize}
-\item Funding - money to purchase appropriate SCM tools ans infrastructure
+\item Funding - money to purchase appropriate SCM tools and infrastructure
 \item Skilled SCM personnel - persons trained and experienced in the areas of SCM tools and process
 \item Sponsorship - Management commitment to the effort
 \item SCM implementation plan - a plan detailing the tasks that lead to the implementation of SCM practices and effective tracking and management of the plan
 \end{itemize}
-Of which we will concentrate on sponsorship and the implementation plan. Our intention is not to cover a complete implementation plan, but rather to discuss some the most fundamental parts of it such as branching patterns and selection of SCM tools. The rest does not fit into the scope of this report.
+Of which we will concentrate on sponsorship and parts of the implementation plan. Our intention is not to cover a complete implementation plan, but rather to discuss some the most fundamental parts of it such as branching patterns and selection of SCM tools. The rest does not fit into the scope of this report.
  
-\section{Economical Motivation /CJ}
-\remove{Ny rubrik. Nämn även benefits of SCM, ser gärna att ditt stycke växt med ytterligare en sida till granskningen imorgon. /JK}
-\remove{Ser det bättre ut? Fler förslag?/CJ}
-
+\section{Economical Motivation}
 The level of configuration management at PonteVecchio has up until now been at a very primitive level, and is in effect hindering the company from developing, maintaining and expanding. In order to convince the management that structuring an SCM plan and employing SCM tools is the right way to go instead of using their ad hoc solution, we would like to introduce the Capability Maturity Model (CMM). 
 
-\noindent CMM is a model developed by the Software Engineering Institute (SEI) and is used as an example of how costs may be lowered and benefits increased by maturing software projects through enacting formally defined processes. The CMM is defined by 5 different maturity levels, where 5 is the highest level. Level 1 is the Initial level, which means that procecces are performed in a chaotic ad-hoc environment, and the success of a project is not reliable. Level 2 is the Repeatable level, which means that there exists some kind of management for tracking functionality, costs and schedule of a project\cite{Merant}, i.e. having implemented some form of structured SCM. Levels 3-5 involve more complex processes such as quality managment, defect prevention, etc. Our goal is to move PonteVecchio from level 1 to level 2. 
+\noindent CMM is a model developed by the Software Engineering Institute (SEI) and is used as an example of how costs may be lowered and benefits increased by maturing software projects through enacting formally defined processes. The CMM is defined by 5 different maturity levels, where 5 is the highest level. Level 1 is the Initial level, which means that processes are performed in a chaotic ad-hoc environment, and the success of a project is not reliable. Level 2 is the Repeatable level, which means that there exists some kind of management for tracking functionality, costs and schedule of a project\cite{Merant}, i.e. having implemented some form of structured SCM. Levels 3-5 involve more complex processes such as quality management, defect prevention, etc. Our goal is to move PonteVecchio from level 1 to level 2. 
 
 \noindent In order to convince the stakeholders that it is worthwhile both cost and benefit wise to move to level 2, we would like to point to an SEI study \cite{Merant} from 1992, where they collected and averaged data from 1,233 separate software projects in 261 organizations and 10 countries in order to validate the benefits of increasing the maturity of a project.
 \\
+
 \begin{table}[h!]
     \centering
         \begin{tabular}{| p{2cm} | p{2cm} | p{2cm} | l | l | r |}
@@ -205,80 +200,106 @@ The level of configuration management at PonteVecchio has up until now been at a
 
 \noindent It should be mentioned that this report is over 20 years old, however it still clearly illustrates the benefit of having a clearly defined process for configuration management and should be able to convince stakeholders the need for increased maturity.
 
-\noindent However, this model only addresses the difference in costs depending on the projects maturity level. Moving from one level to another has inherent costs involved. These costs involve both cost for tools, educating developers in the tools, training managers for handling the systems , etc. In order to convince the stakeholders that the costs will be worth the investments we should also make a presentation of the return on investment (ROI) for implementing SCM.
+\noindent However, this model only addresses the difference in costs depending on the projects maturity level. Moving from one level to another has inherent costs involved. These costs involve both cost for tools, educating developers in the tools, training managers for handling the systems, etc. In order to convince the stakeholders that the costs will be worth the investments we should also make a presentation of the return on investment (ROI) for implementing SCM.
 
-\noindent Borraci\cite{Borraci}, in his master thesis, suggests one way for calculating the ROI with the goal of anwering the question "How much?" in regards to the implementation of SCM. By grouping the different benefits and costs generated by measurable, partially measureable and non measurable data, Borraci reached a formula for calculating the ROI of implementing SCM. Practically it is difficult to calculate the ROI based on 
+\noindent Borraci\cite{Borraci}, in his master thesis, suggests one way for calculating the ROI with the goal of answering the question "How much?" in regards to the implementation of SCM. Borraci goes on to define the costs and benefits in his calculations, such as:
+\begin{itemize}
+\item Tool and training cost, directly measurable.
+\item Cost of performing the SCM Tasks, i.e. using version control, branching, managing repositories. 
+\item Decrease in defects, benefit which directly measurable.
+\item Time saved by automation, tracing bug fixes, version managing. Also directly measurable benefit. \\
+\end{itemize}
 
-\section{Difficulties implementing SCM in companies that are new to SCM /JL}
+\noindent By combining these parameters Borraci reaches the following formula:
+
+\begin{equation}
+\begin{cases}
+TotCost = IC + \sum(\frac{Cost}{Month})_i\\
+TotBenefit = \sum(\frac{Benefit}{Month})_i
+\end{cases}
+\end{equation}
+
+\noindent $IC$ is the initial cost of software licenses, initial training, and other costs that appear in the beginning of the transition. Here it is important to note that initially, the Total Cost will be larger than the Total Benefit, but as time goes on the costs will decrease since generally software licenses is a one-time cost, and in addition developers and management will require less training also decreasing the cost over time. The benefits will also start to increase as the transition takes place as the employees adapts to using the tools and processes. Eventually the Total Benefit will exceed the Total Cost, and the stakeholders will see a return on their investment. 
+
+\noindent It is important to note that Borraci excluded some parameters from his calculations, since they are either too objective or unquantifiable, but still could be mentioned in order to convince the stakeholders. An objective cost that can not be measured could for example be an unwillingness or fear from the developers to adapt to new methods and ways. However there are benefits that cannot be measured as well, such as reducing the fear of code disappearing or being deleted, or allowing developers to work in more dynamic ways, from different computers or from home even. One further benefit that could not be measured is that by having the possibility of working with configurations, developers might be more inclined to experiment with functionality or new projects, without having to worry about compromising anything. 
+
+\noindent These costs and benefits are as said, hard or impossible to measure, but presenting them together with the return on investment and the CMM for the company will present a solid foundation for why it makes sense from an economical standpoint to adapt our plan.
+
+\section{Difficulties implementing SCM in companies that are new to SCM}
 This subsection will not go too deep on the above-mentioned difficulties, as other areas in the report mention the difficulties that are related to each specific area. In this section, some chosen difficulties are highlighted, but not analyzed too deeply.
 
-Some difficulties worth highlightning are the following:
+Some difficulties worth highlighting are the following:
 \begin{itemize}
 \item How are we going to get the developers involved in defining SCM plans and activities for their current project? It is not uncommon for developers that have not used SCM in the past, to be disinterested and think it is a waste of time. In general, the easiest way to make people work on something that they are reluctant to work on, is either to force them to do it, or to motivate them to do it. Therefore, we recommend having a workshop \cite{Vinter}, as it would indirectly force the developers to sit down and think about how SCM can benefit their current project. 
 
 \noindent Human nature is such that when we see the benefits of things in general, we will be motivated to work in order to gain these benefits. In the long run, the workshop will give the developers a taste of the benefits of SCM, which will make them more self motivated to conduct SCM activities on their own. 
 
-\item Another difficulty worth highlightning, is how to go through all existing artifacts and choose which ones shall be configuration items (CI:s) \cite{Kelly2}? It is obvious that we need to identify what items require individual configuration, which is not an easy task, especially for a company without prior SCM knowledge. 
+\item Another difficulty worth highlighting, is how to go through all existing artifacts and choose which ones shall be configuration items (CI:s) \cite{Kelly2}? It is obvious that we need to identify what items require individual configuration, which is not an easy task, especially for a company without prior SCM knowledge. 
 
 \noindent Assuming that we do not have anyone in the company who is familiar with SCM, the main debate is, will we dare to take the risk to choose the CI:s on our own, or will it be more beneficial to hire an expert to analyze our system and determine what we shall consider to be CI:s? 
 
-Choosing the correct CI:s is not an easy task, considering that even experts such as Kelly\cite{Kelly2} and Daniels\cite{Daniels3} define CI:s and their selection in different ways. Choosing too many CI:s will lead to unnecessary overhead, whereas too few CI:s will lead to loss of traceability\cite{Daniels3}. Since choosing the right CI:s is such a complicated task\cite{Daniels3}\cite{Kelly2}, and choosing the wrong CI:s lead to complicated situations\cite{Daniels3}, we recommend external consulting, if there is not anyone who is familiar with SCM in the company. .
+Choosing the correct CI:s is not an easy task, considering that even experts such as Kelly\cite{Kelly2} and Daniels\cite{Daniels3} define CI:s and their selection in different ways. Choosing too many CI:s will lead to unnecessary overhead, whereas too few CI:s will lead to loss of traceability\cite{Daniels3}. Since choosing the right CI:s is such a complicated task\cite{Daniels3}\cite{Kelly2}, and choosing the wrong CI:s lead to complicated situations\cite{Daniels3}, we recommend external consulting, if there is not anyone who is familiar with SCM in the company.
 
 \item A third difficulty worth highlighting, is how to ensure reproducibility of everything prior to SCM? The answer is that this is an extremely hard task, especially if we want to reproduce exact versions of source code that a certain customer is using \cite{Appleton2}.
 
 \noindent The main debate here is if SCM have been introduced too late, which means loss of traceability \cite{Kelly} (which indirectly affects reproducibility, because one must be able to trace what files or functionality were present in each version). Unless the company already had good reproducibility or traceability prior to SCM, this may be an impossible task \cite{Bays}. 
 
 \end{itemize}
-\section{Branching pattern/JL}
-This subsection covers some important branching related topics. Some topics are more detailed than others, depending on how much emphasis we have chosen to put on each specific subject.
-
-\subsection{Optimal branching for Parallel Development/JL}
+\section{Branching pattern}
+Branching is a form of revision control, which is a duplication of a certain object. Branches are good for many reasons, like experimenting, parallel development and version control. This subsection covers some important branching related topics. Some topics are more detailed than others, depending on how much emphasis we have chosen to put on each specific subject.
+\subsection{Optimal branching for Parallel Development}
 The main question here is how branching should be performed in order to obtain maximum efficiency during parallel work.
 
 \noindent Our definition of not having any branches would be that no branches are allowed, not even local ones in the workspace. This means that everyone would be working on the original files in the repository. Parallel work would be very difficult in such a scenario, as everyone would be intruding into each others space, braking each others code \cite{Appleton}.
 
-\noindent Not having any branches would mean bad integrity and it would be more difficult to track, verify and reproduce configurations and features \cite{Appleton}. Since reproducibility is harder to ensure without branches, this leads to bad security. With bad security, we mean that we can not go back to a previous version of our released software. This can be problematic because if our new revision have more bugs than our old \cite{Babich}, we can't do a diff between the new and the old version to find the bug, because we did not branch the old version. Reproducibility would be nonexistent without any branches, as the only version we have is the one we are working on.
+\noindent Not having any branches would mean bad integrity and it would be more difficult to track, verify and reproduce configurations and features \cite{Appleton}. Since reproducibility is harder to ensure without branches, this leads to bad security. With bad security, we mean that we can not go back to a previous version of our released software. This can be problematic because if our new revision have more bugs than our old \cite{Babich}, we can't do a diff between the new and the old version to find the bug, because we did not branch the old version. Reproducibility would be poor without any branches, as the only version we have is the one we are working on.
 
-\noindent It is obvious that branches are needed in order to work efficiently, both in terms of parallel work and after release product support. How is our branching strategy supposed to be in order to reach optimum results in these fields?
+\noindent It is obvious that branches are needed in order to work efficiently, both in terms of parallel work and after-release product support. How is our branching strategy supposed to be in order to reach optimum results in these fields?
 
 \subsubsection{Branching for isolation and reproducibility}
 \noindent Ideally each project member has his/her own workspace. A workspace can be seen as a private branch, where all changes are isolated. The reader may ask, why is it necessary to isolate changes? The answer is that isolation of changes is needed in order for each developer to choose when he/she shall be struck by the other developers changes \cite{Appleton}. This will give the developer time to prepare for whatever impact the other developers changes will have on his/her changes.
 
 \noindent Some may argue that this will introduce the simultaneous update problem \cite{Babich}. It is correct that the simultaneous update problem will be present with such a solution, but it is our SCM tools duty to detect these conflicts. The last person to integrate will be the one who will have to solve the merge conflicts, which will indirectly motivate the developers to integrate as often as possible.
 
-\noindent Ideally, one branch for every release is recommended to reach optimum reproducibility of problems that customers may have \cite{Vance}. This is a necessity, because the customer may use old hardware, which is not capable of running the latest version of the software.
+\noindent Ideally, one branch for every release is recommended to reach optimum reproducibility of problems that customers may have \cite{Vance}. This is a necessity, because the customer may use old hardware, which is not capable of running the latest version of the software. The downsides of this approach is that many branches can be confusing for the developers, but since reproducibility is already hard to ensure in distributed systems and PonteVeccio has a large customer base, they will need all reproducibility they can get.
 
 \subsubsection{Deferred Branching versus Early Branching}
-\noindent Appleton \cite{Appleton} has mentioned two different branching styles ("Early Branching" and "Deferred Branching"). Early branching is the more safe approach, whereas deferred branching provides more liveness\cite{Appleton}, which means more time-effective work at the trade-off of safety. In PonteVeccios case, adopting early branching would be a safe route, but is it optimal? Deferred branching on the other hand means less overheads, less merging, less isolation. Are these benefits worth it at the cost of less safety? 
+\noindent Appleton \cite{Appleton} has mentioned the two branching styles "Early Branching" and "Deferred Branching". Early branching is the more safe approach, whereas deferred branching provides more liveness\cite{Appleton}, which means more time-effective work at the trade-off of safety. In PonteVeccios case, adopting early branching would be a safe route, but is it optimal? Deferred branching on the other hand means less overheads, less merging, less isolation. Are these benefits worth it at the cost of less safety? 
 
-\noindent In PonteVeccios case, we suggest them to adopt early branching, on the basis that they are developing a distributed system, which means that reproducibility is already hard to achieve \cite{Bays}. The extra safety in early branching will increase the already unfavourable odds of reproducibility, which could be critical in distributed systems such as PonteVeccio's. As mentioned earlier, a customer may not be able to run the latest software version due to certain limitations, which means that support for old versions is critical. This is why we suggest PonteVeccio to take the safe route (early branching) instead of the hasty route (deferred branching).
+\noindent In PonteVeccios case, we suggest them to adopt early branching, on the basis that they are developing a distributed system, which means that reproducibility is already hard to achieve \cite{Bays}. Since the odds of reproducibility is unfavorable, early branching is preferred, because the extra safety will increase the odds of reproducibility. This could be critical in customer oriented distributed systems such as the one in PonteVeccio's. As mentioned earlier, a customer may not be able to run the latest software version due to certain limitations, which means that support for old versions is critical. This is why we suggest PonteVeccio to take the safe route (early branching) instead of the hasty route (deferred branching).
 
-\subsection{Recommended Merging style/JL}
+\subsection{Merging Early versus Merging Late}
 \noindent According to Appleton \cite{Appleton} the choice of merging style often (but not always) follows from the chosen branching style.
 
-\noindent We recommend continuous merging, that means merging whenever a task is completed. Therefore we recommend the merging pattern "Merge Early and often" \cite{Appleton}. A relatively small company like PonteVecchio would have no problems to merge changes as soon as they are done, therefore this model would be optimal. Too many changes at once would mean that the development has to be halted in order to integrate the changes. Everyone that has taken the SCM course will probably agree that the merging is too infrequent if programmers can be given a week off while others are integrating the changes.
+\noindent Since we recommended PonteVeccio to adopt early branching, which has increased safety at the cost of more merging needed, would the natural choice fall on merging early? The concept of merging early is similar to the concept of early branching, which is increased safety at the cost of more effort \cite{l4b}. Merging late on the other hand has similar concept to deferred branching, more speed at the cost of safety \cite{l4b}.
 
-\subsection{How to handle variants?/JL}
-Since the application that PonteVeccio develops has a mobile version and a desktop version, it is inevitable to not have any variants in the company. The main question in this subtopic is how are we going to handle these variants in the best possible way?
+\noindent In PonteVeccios case, we recommend merging early, because even though they are a small company, there is still a sizable amount of developers working on the same project. Merging late is taking a risk to obtain higher speed by saving time from merging. This can be beneficial, but if it goes wrong, the entire team might get stalled, which would impact many factors in the project such as cost and development time. For a small company like PonteVeccio, it is probably more sensible to play safe and avoid the "all or nothing" effect that could occur if merging a lot of changes at one time goes wrong.
 
-\noindent The two main variant management methods that we debated could be of use to the project was the variant segregation method and the single source variation method \cite{Mahler}. Our final choice fell on the variant segregation model due to the following reasons:
+\subsection{How to handle variants?}
+Since the application that PonteVeccio develops has both a mobile and a desktop version that shares the same code base, it is inevitable not to have variants in the company. The main question in this subtopic is how are we going to handle these variants in the best possible way?
+
+\noindent The two main variant management methods that we debated could be of use to the project was the variant segregation method and the single source variation method \cite{Mahler}. The variant segregation model means that you have separate files for each variation \cite{Mahler}. The single source variation method means that the variations are in the same file, but chosen conditionally \cite{Mahler}.
+
+\noindent Our final choice fell on the variant segregation model due to the following reasons:
 \begin{itemize}
 \item PonteVeccio is a fairly small company, but the project is still enormous for one person to overview. Using the single source variation variant method would probably stall the developers often, due to the drawback that the code is harder to read \cite{Mahler}.
-\item The risk of redundancy (also known as the double maintenance problem\cite{Babich}) is the main drawback of the variant segregation model\cite{Mahler}. The impact of this drawback is not a big concern, since we only have two variants (desktop and mobile). It would be an entirely different story if we had hundreds of variants. Since the common functionality is located outside the variants, one may get the idea to just fix the bug reports that were reported in each separate version, and ignore it in the other until someone reports it there as well. The conclusion is that we would not recommend such a strategy for PonteVeccio, otherwise the mobile and the desktop version that were intended to be similar to each other, will drift too far apart in terms of functionality. We therefore recommend PonteVeccio to live with the double maintenance problem in this case.
+\item The risk of redundancy (also known as the double maintenance problem\cite{Babich}) is the main drawback of the variant segregation model\cite{Mahler}. The impact of this drawback is not a big concern, since we only have two variants (desktop and mobile). It would be an entirely different story if we had hundreds of variants. 
+
+\noindent Some people may get the idea to avoid the double maintenance problem by just fixing the bugs that are reported in one variant (for example the mobile version) and not the other (example the desktop version), until someone reports it in the other variant (i.e. desktop) as well. We do not recommend this strategy to avoid the double maintenance problem, or the mobile and the desktop version that were intended to be similar to each other, will drift too far apart in terms of functionality. We therefore recommend PonteVeccio to live with the double maintenance problem in this case.
 
 \end{itemize}
 \noindent
-\subsection{When to make a baseline?/JL}
-We recommend PonteVeccio to establish baselines whenever they reach a state that they want to freeze at a certain point in time.  
+\subsection{When to make a baseline?}
+We recommend PonteVeccio to establish baselines whenever they reach a state that they want to freeze at a certain point in time. This can for example be whenever they release a new version or when adequate amount of change requests are accumulated. 
 
 \noindent A baseline should follow the baseline reproducibility principle \cite{Appleton2}, which means that a baseline must be reproducible. This indicates that it may be a good idea to create a new baseline for every new release. A new baseline for every new release may not be needed, but since a release should be reproducible, a baseline following the reproducibility principle can be good as documentation when comparing releases.
 
 \noindent Separate baselines for variants may sometimes be needed. In PonteVeccios case, we recommend separate baselines for each variant, as the software has a mobile version and a desktop version. The mobile version may have a higher emphasis on being as resource efficient as possible, whereas the desktop version may have other priorities \cite{Nielsen}.
 
-\subsection{How to accomplish reproducibility?/JL}
-\noindent Since the application that PonteVeccio is developing is an Enterprise scheduling app, with on-line functionality, it is a distributed system. In distributed systems, it is unfortunately not easy to ensure reproducibility \cite{Bays}, as some dependencies throughout the network may change. We can however put the reproducibility odds to our advantage by by saving all the released file versions, the baselines and the documents associated with each release. 
+\subsection{How to accomplish reproducibility?}
+\noindent Since the application that PonteVeccio is developing is an Enterprise scheduling app, with on-line functionality, it is a distributed system. In distributed systems, it is unfortunately not easy to ensure reproducibility \cite{Bays}, as some dependencies throughout the network may change. We can however put the reproducibility odds to our advantage by saving all the released file versions, the baselines and the documents associated with each release. 
 
-\section{SCM tool selection/JK}
+\section{SCM tool selection}
 Selecting the right SCM tool is a rather complicated process that should not be underestimated, the tool will be used for a very long period of time and a well evaluated tool selection process will increase the chances of finding a tool suited for the company's needs. The following subsections will give a brief summary of the most fundamental tasks during this process rather than any concrete tool selection. As Schamp \cite{Schamp} describes it
 "You cannot be concrete until you have evaluated the environment and the process".
 
@@ -287,22 +308,22 @@ Before the tool selection process is ready to be carried out the organization mu
 \begin{itemize}
 \item The wanted benefit with a tool or a new tool.
 \item The process used or the process needed for successful software development
-\item See the future of needs in local SCM infrastructure and preocesses
+\item See the future of needs in local SCM infrastructure and processes
 \item Have the liquidity to buy and deploy the new tool or tools.
 \end{itemize}
-If the organization fails to prove its knowledge about these things then it probably also lacks commitment to the tool selection project which is then more likely to fail due to this.\cite{ABB}
+If the organization fails to prove its knowledge about these things then it probably also lacks commitment to the tool selection project which is then more likely to fail due to this \cite{ABB}.
 
 \subsection{Obtain organizational support and management commitment}
-One of Moreiras \cite{Moreira} common success criterias is the sponsorship or management support. If we can convince management of the increased productivity thanks to the tool, then we'll also have their commitment to the implementation process which is necessary in order to adapt SCM throughout the organization \cite{Sayko}. The management attention can be obtained by highlighting the economical benefits in the long run rather than the technical ones. If we success in estimating a high return of investment to present to the management then there's a higher chance that the management will see the benefits of a proper SCM implementation and give their commitment to the tool adaptation \cite{Sayko}. 
+One of Moreiras \cite{Moreira} common success criteria is the sponsorship or management support. If we can convince management of the increased productivity thanks to the tool, then we'll also have their commitment to the implementation process which is necessary in order to adapt SCM throughout the organization \cite{Sayko}. The management's attention can be obtained by highlighting the economical benefits in the long run rather than the technical ones. If we success in estimating a high return of investment to present to the management then there's a higher chance that the management will see the benefits of a proper SCM implementation and give their commitment to the tool adaptation \cite{Sayko}. 
 
 \subsection{Selecting group}
-The tool selection should be carried out as its own project with a number of representatives from all different departments which are going to be involved in the new tool. The selecting group should at least consist of a sponsor or project manager, developers, testers and technical staff\cite{Sayko}. If there doesn't already exist any individuals responsible for the SCM process someone with knowledge about the company SCM policy such as release and branching strategies should be selected to be responsible for the implementation process as the SCM manager. In case there's more than one site it's a good idea to also appoint a SCM manager for each different site to be included in the selecting group \cite{ABB}. The selecting group must have knowledge in all SCM areas and understand the common goal for the group, they must also be able to make decisions and to do compromises since no tool is perfect.\cite{Sayko}
+The tool selection should be carried out as its own project with a number of representatives from all different departments which are going to be involved in the new tool. The selecting group should at least consist of a sponsor or project manager, developers, testers and technical staff\cite{Sayko}. If there doesn't already exist any individuals responsible for the SCM process someone with knowledge about the company's SCM policy such as release and branching strategies should be selected to be responsible for the implementation process as the SCM manager. In case there's more than one site it's a good idea to also appoint a SCM manager for each different site to be included in the selecting group \cite{ABB}. The selecting group must have knowledge in all SCM areas and understand the common goal for the group, they must also be able to make decisions and to do compromises since no tool is perfect \cite{Sayko}.
 
 \subsection{Determine the scope of the effort}
-To be able to calculate the return of investment to use when convincing the management we'll have to calculate an effort estimation for the implementation process. The impact of the effort will depend on the scope that the new tool will affect, this scope is likely bigger than one first think of. As Sayko explains it: "For example selecting a tool primarily for version control of source code files may eventually lead to discussions about how software configuration management fits into the organization's software development process" \cite{Sayko}. It's not uncommon that companies start using a new tool without having it evaluated enough and when they realize they miss functionality which is found in another tool it's probably already too expensive to mote to any other tool.
+To be able to calculate the return of investment to use when convincing the management we'll have to calculate an effort estimation for the implementation process. The impact of the effort will depend on the scope that the new tool will affect, the scope is probably much bigger than we thought from the beginning. As Sayko explains it: "For example selecting a tool primarily for version control of source code files may eventually lead to discussions about how software configuration management fits into the organization's software development process" \cite{Sayko}. It's not uncommon that companies start using a new tool without having it evaluated properly, and when they realize they miss functionality which is found in another tool it's probably already too expensive to move to any other tool.
 
-\noindent One cannot simply select a SCM tool without carefully investigate the company needs. In order to determine an appropriate level of requirements that the organization software development process will put on the tool it's a good idea to start by interviewing a representative cross section of the organization's staff such as developers, QA personnel and management and see what they expects the tool to help them with.\cite{Sayko}
-It's rather important to not only make sure that the SCM process is supported by the tool but also that it does so without being unnecessary complex. \cite{ABB} If the tool provides more functionality than what is actually needed it becomes harder for the users to use the tool since there's excessive information shown to the users.
+\noindent One cannot simply select a SCM tool without carefully examining the company's needs. In order to determine an appropriate level of requirements that the organization software development process will put on the tool it's a good idea to start by interviewing a representative cross section of the organization's staff such as developers, QA personnel and management and see what they expects the tool to help them with \cite{Sayko}.
+It's rather important to not only make sure that the SCM process is supported by the tool but also that it does so without being unnecessary complex \cite{ABB}. If the tool provides more functionality than what is actually needed it becomes harder for the users to use the tool since there's excessive information shown to the users.
 
 \noindent Another thing that will affect the effort estimation is whether there already exists a tool that needs to be replaced with the new one, sometimes the transition between tools can be rather complex especially for traceability-critical systems where version history from previous tool needs to be moved to the new tool. Sayko also explains that: "The cost is not merely the purchase price of the SCM tool, but the learning curve and productivity impact that occurs during the tool adoption process" \cite{Sayko}. However this might not has to be true especially in cases where small companies introduces expensive commercial tools at an early stage.
 
@@ -311,10 +332,10 @@ It's rather important to not only make sure that the SCM process is supported by
 \subsection{Desirable properties}
 One should not underestimate the number of requirements that will be required by the company's SCM process and will further also need to be supported by the tool. The following list consist of properties that should be taken into account when selecting a SCM tool
 \begin{itemize}
-\item SCM strategies (long transaction, composition model, change set model...)
-\item SCM process support (branching, releases...)\remove{Är detta exempel på SCM processer? tycker det är olika beteckningar vad en SCM process är beroende på källa?}
+\item SCM models (long transaction, composition model, change set model...)
+\item SCM process support (branching, releases...)
 \item Freeze code (baseline handling, file locks...)
-\item Branching strategies \& Merging (tracking between merges...)
+\item Branching \& Merging strategies (tracking between merges...)
 \item History and diff functions
 \item Distributed development
 \item Support for remote sites
@@ -337,26 +358,28 @@ One should not underestimate the number of requirements that will be required by
 \item Lifespan
 \item Support for identification and traceability
 \end{itemize}
-The following subsection will help you prioritize some of these properties.
+\cite{Sayko}\cite{ABB}
+The following subsection will help to prioritize some of these properties.
 
-\subsection{Identify candidate SCM Tools and select one}
-If you only focus on tools supported for your organization's SCM process the spectra of tools to choose from will be rather large. However by picking out the tools supported by the process, development platform and IDE and then rank them in process support order will ease the selection process. \cite{Sayko}
-Some of the properties mentioned in the list above are also found in an evaluation checklist by Schamp \cite{Schamp} where he put grades of importance for the different properties depending on their importance for different SCM processes.
+\subsection{Identify \& test candidate SCM Tools}
+If you only focus on tools supported for your organization's SCM process the spectra of tools to choose from will be rather large. However by picking out the tools supported by the process, development platform and IDE and then rank them in process support order will ease the selection process \cite{Sayko}.
+Some of the properties mentioned in the list above are also found in the evaluation checklist by Schamp \cite{Schamp} where he put grades of importance for the different properties (such as merging/branching) depending on their importance for different organizational complexities (such as high level of parallel development).
 
-\noindent Another great advice is to take help from tool vendors and test drive some of the most interesting tools with some different scenarios/use cases both regular and irregular ones in order to get a real feel of the tool.\cite{Sayko} The next step is then to consider these aspects and simply pick the one that feels best and adapt in onto any pilot experiment.
+\noindent Another great advice is to take help from tool vendors and test drive some of the most interesting tools with some different scenarios/use cases both regular and irregular ones in order to get a real feel of the tool \cite{Sayko}. In this way we'll also figure out if it's possible to customize the tool for some of our special needs.
 
-\subsection{Adapt the tool}
-It's a good idea to simply begin the adoption on a pilot project, this will avoid organization-wide chaos.\cite{Sayko} In this way it's also easy to find flaws with the tool which might wasn't obvious during the evaluation. 
-The complete adaptation process is very time consuming but it has to be allowed to take some time for the organization to get used to the new way of working and this is where the organizational commitment to the effort really is of matter. To train staff with proper education sessions where they are allowed to tell their impressions and difficulties of the new tool will however ease the tool adaption process for the employees.\cite{Sayko}
+\subsection{Select and adapt the tool}
+ The next step is then to consider these aspects and simply pick the one that feels best and adapt in onto any pilot experiment. It's a good idea to begin the adoption on a pilot project, this will avoid organization-wide chaos \cite{Sayko}. In this way it's also easy to find flaws with the tool which might wasn't obvious during the evaluation. 
+The complete adaptation process is very time consuming but it must be allowed to take time for the organization to get used to the new way of working, this is where the organizational commitment to the effort really is of matter. To train staff with proper education sessions where they are allowed to tell their impressions and difficulties of the new tool will however ease the tool adaption process for the employees \cite{Sayko}.
 
 \section{Conclusion}
-To select and adapt a SCM tool is a rather complex process that is expensive both in the matter of time and productivity. These drawbacks must therefore be justified by the economical benefits of having a higher quality of the software development process in the long run. However if the tool evaluation process aren't taken seriously it's probably going to fail, if not already in the implementation phrase due to lack of commitment, then maybe after a while when the organization realizes that the selected tool actually wasn't perfectly suited for their needs and now has to invest hard earned money in another project to move to a better suited tool.
+
+\noindent To select and adapt a SCM tool is a rather complex process that is expensive both in the matter of time and productivity. These drawbacks must therefore be justified by the economical benefits of having a higher quality of software development process in the long run. By presenting both the benefits, decreased costs and increase in productivity, we would convince PonteVecchio to implement SCM tools and processes. However if the tool evaluation process aren't taken seriously it's probably going to fail, if not already in the implementation phrase due to lack of commitment, then maybe after a while when the organization realizes that the selected tool actually wasn't perfectly suited for their needs and now has to invest hard earned money in another project to move to a better suited tool.
 
 \noindent Which branching strategy is adequate for a certain company depends on the companies priorities. For PonteVeccio, the conclusion is that safety is more important than speed, therefore Early Branching is favorable. Merging changes early lead to less integration downtime. Small companies like PonteVeccio should have no issues to merge early and often to avoid these unnecessary downtimes. How variants should be handled also depends largely on how many variants there are and how much they differ. In PonteVeccios case, Variant Segregation is recommended over Single Source variation, due to different priorities in desktop and mobile versions.
 
-\remove{ca 5 rader per man även här...}
-
-\todo{Se till så alla referenser används innan vi skickar in!}
+\noindent Finally, the scope of this project is of course very limited, since we were allowed to define it ourselves. What PonteVecchio is, and what it needed. If PonteVecchio indeed actually existed, there would be so much more variables and data to consider. We do however hope that this report may be used as a guideline for a real case in the future, and that our discussions and insights might help someone realize the benefits of SCM. 
+\newpage
+\pagenumbering{gobble}
 \begin{thebibliography}{1}
 
 \bibitem{Babich} Wayne A. Babich, Software Configuration Management, COORDINATION FOR TEAM PRODUCTIVITY.
@@ -367,16 +390,9 @@ To select and adapt a SCM tool is a rather complex process that is expensive bot
 
 \bibitem{Moreira} Mario Moreira: The 3 Software Configuration Management Implementation Levels (1999)
 
-\bibitem{Compton}Compton, The Software Configuration Manager, subchapter: QUALIFICATIONS
-
-\bibitem{Koskela}Juha Koskela, Software configuration management in agile methods
-\url{http://www.vtt.fi/inf/pdf/publications/2003/P514.pdf}
-
-\bibitem{Keys} Jessica Keyes, Software Configuration Management (2004) \url{http://books.google.se/books?id=0vjMlBz4nC0C&printsec=frontcover&hl=sv&source=gbs_ge_summary_r&cad=0#v=onepage&q&f=false}
-
 \bibitem{Appleton} Brad Appleton, Streamed Lines: Branching Patterns for Parallel Software Development (1998)
 
-\bibitem{Appleton2} Brad Appleon, The Baseline Reproducibility Principle (2005)
+\bibitem{Appleton2} Brad Appleton, The Baseline Reproducibility Principle (2005)
 
 \bibitem{Mahler} Alex Mahler, Variants: Keeping Things Together and Telling Them Apart (1994)
 
@@ -392,7 +408,7 @@ To select and adapt a SCM tool is a rather complex process that is expensive bot
 
 \bibitem{Sayko} Michael Sayko: \url{http://www.cmcrossroads.com/article/practical-approach-selecting-and-adopting-scm-tool} (2006), visited 27-12-2014
 
-\bibitem{Schamp} Schamp /JK
+\bibitem{Schamp} Alan Schamp: CM-tool evaluation and selection. IEEE Software. (1995)
 
 \bibitem{Vance} Stephen Vance, Advanced SCM Branching Strategies, \url{http://vance.com/steve/perforce/Branching_Strategies.html}, visited 31-12-2014
 
@@ -402,5 +418,6 @@ To select and adapt a SCM tool is a rather complex process that is expensive bot
 
 \bibitem{iDA} Interchange of Data between Administrations (no specified author), Configuration Management Plan, \url{http://www.google.se/url?sa=t&rct=j&q=&esrc=s&source=web&cd=6&ved=0CE0QFjAF&url=http\%3A\%2F\%2Fec.europa.eu\%2Fidabc\%2Fservlets\%2FDoc4b4e.doc\%3Fid\%3D18630&ei=7-imVNOcJ-LOyQP124DgCw&usg=AFQjCNHnGmTINV3aG8xJlu_6xpr5e0CK_Q&bvm=bv.82001339,d.bGQ}, visited 02-01-2014 
 
+\bibitem{l4b} Lars Bendix, Lecture 4b: Repository in-depth Appleton et al.
 \end{thebibliography}
 \end{document}
